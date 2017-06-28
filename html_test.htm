@@ -1,0 +1,490 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>The GNU MP Bignum Library</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="new.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css"> td {padding-left:8pt; padding-right:8pt;}</style>
+  <style type="text/css"> th {padding-left:8pt; padding-right:8pt;}</style>
+</head>
+
+<body>
+
+<a name="dir"> </a>  <!-- This is needed by the html manual My friend really is stuck in Pamplona -->
+
+<div id="top">
+  <table style="width:100%; background-color:#808080;">
+    <tr>
+      <td style="text-align:left;">
+	<svg width="300px" height="100px" version="1.1"
+	     viewBox="0 0 1500 500"
+	     xmlns="https://www.w3.org/2000/svg">
+	  <rect x="0" y="0" width="1500" height="540" fill="#808080" />
+	  <text x="0" y="440" fill="#c00000"  font-size="540" font-family="arial" font-weight="bold">
+	    GMP
+	  </text>
+	  <text x="50" y="490" font-size="70" font-family="Verdana">
+	    &#171;Arithmetic without limitations&#187;
+	  </text>
+	</svg>
+      </td>
+      <td style="text-align:center; font-size:250%;">
+	The GNU<br>Multiple Precision<br> Arithmetic Library
+      </td>
+      <td style="text-align:right;">
+	<a href="https://www.gnu.org"><img src="heckert_gnu.small.png" alt="GNU head" border="0"></a>
+	<br> <span style="font-size:50%;">Last modified: 2016-12-19 </span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="container">
+  <div id="top-spacer"></div>
+
+<br><br><br>
+
+
+
+<table style="width:90%;">
+  <tr>
+    <td style="text-align:left; vertical-align:middle;">
+      <table style="border-collapse:collapse;">
+	<tr>
+	  <td style="text-align:right;"> Documentation: </td>
+          <td><a href="manual/">6.1.2 HTML</a> | <a href="gmp-man-6.1.2.pdf">6.1.2 PDF</a> </td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"> Download: </td>
+          <td><a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.lz">gmp-6.1.2.tar.lz</a> | <a href="gmp6.1.html">Release notes</a>  <div style="display:inline; color:red;"> <b> &nbsp; NEW 2016-12-16 </b> </div> </td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"> Development: </td>
+	  <td> <a href="devel/">Developers' corner</a> </td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"> GMPbench: </td>
+	  <td> <a href="gmpbench.html">Results</a> | <a href="//gmplib.org/download/misc/gmpbench-0.2.tar.bz2">Download benchmark sources</a> </td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"> Fun: </td>
+	  <td> <a href="pi-with-gmp.html">Compute billions of digits of &#960; using GMP!</a> </td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"> Security: </td>
+	  <td> <a href="security.html">GMP server security policy</a> </td>
+	</tr>
+      </table>
+    </td>
+
+
+    <td style="text-align:right;">
+      <table style="border-collapse:collapse;">
+        <tr> <th style="text-align:center;"> Page contents: <hr> </th>
+	</tr>
+	<tr><td style="text-align:right;"><a href="#WHAT">What is GMP?</a></td></tr>
+	<tr><td style="text-align:right;"><a href="#FUNCCLASSES">Function categories</a></td></tr>
+	<tr><td style="text-align:right;"><a href="#DOWNLOAD">Download</a></td></tr>
+	<tr><td style="text-align:right;"><a href="#BUGREPORTS">Reporting bugs</a></td></tr>
+	<tr><td style="text-align:right;"><a href="#MAILINGLISTS">Mailing lists</a></td></tr>
+	<tr><td style="text-align:right;"><a href="#STATUS">Current release status</a></td></tr>
+	<tr><td style="text-align:right;"><a href="#FUTURE">Future releases</a></td></tr>
+      </table>
+    </td>
+</table>
+
+
+<br><br><br>
+
+<hr>
+<p style="text-align:center;"> This site does <b>not</b> use cookies <button type="button">I agree!&nbsp;</button>
+</p>
+<hr>
+
+<a name="WHAT"> </a>
+<h3>What is GMP?</h3>
+
+<p>GMP is a free library for arbitrary precision arithmetic, operating on
+signed integers, rational numbers, and floating-point numbers.  There is no
+practical limit to the precision except the ones implied by the available
+memory in the machine GMP runs on.  GMP has a rich set of functions, and the
+functions have a regular interface. </p>
+
+<p>The main target applications for GMP are cryptography applications and
+research, Internet security applications, algebra systems, computational
+algebra research, etc. </p>
+
+<p>GMP is carefully designed to be as fast as possible, both for small operands
+and for huge operands.  The speed is achieved by using fullwords as the basic
+arithmetic type, by using fast algorithms, with highly optimised assembly code
+for the most common inner loops for a lot of CPUs, and by a general emphasis on
+speed. </p>
+
+<p>The first GMP release was made in 1991.  It is continually developed and
+maintained, with a new release about once a year. </p>
+
+<p>Since version 6, GMP is distributed under the dual licenses, 
+<a href="https://www.gnu.org/licenses/lgpl.html">GNU LGPL v3</a>
+and <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU GPL v2</a>.
+These licenses make the library free to use, share, and improve, and allow you
+to pass on the result.  The GNU licenses give freedoms, but also set firm
+restrictions on the use with non-free programs. </p>
+
+<p>GMP is part of the GNU project.  For more information about the GNU project,
+please see the <a href="https://www.gnu.org/"> official GNU web site.</a> </p>
+
+<p>GMP's main target platforms are Unix-type systems, such as GNU/Linux,
+Solaris, HP-UX, Mac OS X/Darwin, BSD, AIX, etc.  It also is known to work on
+Windows in both 32-bit and 64-bit mode. </p>
+
+<p>GMP is brought to you by a team <a href="manual/Contributors.html">listed in
+the manual</a>. </p>
+
+<p>GMP is carefully developed and maintained, both technically and legally.  We
+of course inspect and test contributed code carefully, but equally importantly
+we make sure we have the legal right to distribute the contributions, meaning
+users can safely use GMP.  To achieve this, we will ask contributors to sign
+paperwork where they allow us to distribute their work. </p>
+
+
+<hr>
+<a name="FUNCCLASSES"> </a>
+<h3>GMP function categories</h3>
+
+<p>There are several categories of functions in GMP: </p>
+
+<ol>
+<li>High-level signed integer arithmetic functions (<code>mpz</code>).  There are about 150
+    arithmetic and logic functions in this category. </li>
+
+<li>High-level rational arithmetic functions (<code>mpq</code>).  This category consists of
+    about 35 functions, but all <code>mpz</code> functions can be used
+    too, by applying them to the numerator and denominator separately. </li>
+
+<li>High-level floating-point arithmetic functions (<code>mpf</code>).  This is the GMP
+    function category to use if the C type `double' doesn't give enough
+    precision for an application.  There are about 70 functions in this
+    category.  New projects should strongly consider using the much more
+    complete GMP extension library <a href="http://www.mpfr.org/">mpfr</a>
+    instead of mpf. </li>
+
+<li>C++ class based interface to all of the above.  (The C functions and types
+    can of course be used directly from C++ too.) </li>
+
+<li>Low-level positive-integer, hard-to-use, very low overhead functions are
+    found in the <code>mpn</code> category.  No memory management is performed; the caller
+    must ensure enough space is available for the results.  The set of
+    functions is not always regular, nor is the calling interface.  These
+    functions accept input arguments in the form of pairs consisting of a
+    pointer to the least significant word, and an integral size telling how
+    many limbs (= words) there are in that argument.  The functions in the
+    other categories call mpn for almost all their calculations.  Of these
+    functions about 60 are public. </li>
+</ol>
+
+
+<hr>
+<a name="DOWNLOAD"> </a>
+<h3>Download the latest release of GMP</h3>
+
+<blockquote>
+<table style="border-collapse:collapse;">
+<colgroup><col>
+<colgroup><col><col><col>
+<thead>
+<tr>
+  <th> GMP 6.1.2 <th> lz, 1939430 bytes <th> xz, 1946336 bytes <th> bz2, 2386766 bytes
+<tbody>
+<tr>
+  <td> Main site, gmplib.org, via https </td>
+<td style="text-align:center;"> <a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.lz">gmp-6.1.2.tar.lz</a> </td>
+<td style="text-align:center;"> <a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.xz">gmp-6.1.2.tar.xz</a> </td>
+<td style="text-align:center;"> <a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.bz2">gmp-6.1.2.tar.bz2</a> </td>
+</tr>
+<tr>
+  <td> USA, ftp.gnu.org, via https </td>
+<td style="text-align:center;"> <a href="https://ftp.gnu.org/gnu/gmp/gmp-6.1.2.tar.lz">gmp-6.1.2.tar.lz</a>   </td>
+<td style="text-align:center;"> <a href="https://ftp.gnu.org/gnu/gmp/gmp-6.1.2.tar.xz">gmp-6.1.2.tar.xz</a>   </td>
+<td style="text-align:center;"> <a href="https://ftp.gnu.org/gnu/gmp/gmp-6.1.2.tar.bz2">gmp-6.1.2.tar.bz2</a>  </td>
+</tr>
+</table>
+</blockquote>
+
+<p>To try to verify that the file you have downloaded has not been tampered
+with, you can check that the GnuPG signature matches the contents of the file.
+Use your
+<a href="https://www.gnupg.org/download/index.en.html">GnuPG software</a> or a
+<a href="http://www.pgp.net/">key server</a> directly to get the key that was
+used for creating the signature. Starting from the repackaging of gmp-5.1.0 as
+gmp-5.1.0a.tar.* the following key is used to sign GMP releases:
+
+<br> <blockquote> <code>
+Key ID: 0x28C67298 <br>
+Key type: 2560 bit RSA <br>
+Fingerprint: 343C 2FF0 FBEE 5EC2 EDBE  F399 F359 9FF8 28C6 7298 <br>
+</code>
+</blockquote>
+</p>
+
+<p>
+GnuPG signatures:
+<a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.lz.sig">gmp-6.1.2.tar.lz.sig</a> &nbsp;
+<a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.xz.sig">gmp-6.1.2.tar.xz.sig</a> &nbsp;
+<a href="//gmplib.org/download/gmp/gmp-6.1.2.tar.bz2.sig">gmp-6.1.2.tar.bz2.sig</a>
+</p>
+
+<p>
+Instead of using a release, you may also get the latest code from the
+<a href="devel/repo-usage.html">GMP repositories</a>.  This will require some
+more work compared to using a release.
+</p>
+
+<hr>
+<a name="BUGREPORTS"> </a>
+<h3>Reporting bugs in GMP</h3>
+
+<p>Please first see the
+<a href="manual/Reporting-Bugs.html">manual</a> on how to report bugs.  The
+proper address for bug reports is gmp-bugs at gmplib.org.
+</p>
+
+<p>Most problems with GMP these days are due to problems not in GMP, but with
+the compiler used for compiling the GMP sources.  This is a major concern to
+the GMP project, since an incorrect computation is an incorrect computation,
+whether caused by a GMP bug or a compiler bug.  We fight this by making the GMP
+testsuite have great coverage, so that it should catch every possible
+miscompilation.
+</p>
+
+
+<hr>
+<a name="MAILINGLISTS"> </a>
+<h3>GMP mailing lists</h3>
+
+<blockquote>
+  <table style="border-collapse:collapse;">
+    <thead>
+      <tr>
+	<th> List </th> <th> Subscribe URL </th> <th> Archive URL </th> <th> Purpose </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td> gmp-bugs </td>
+	<td style="font-size:80%;">
+	  <a href="mailman/listinfo/gmp-bugs">gmplib.org/mailman/listinfo/gmp-bugs</a>
+	</td>
+	<td style="font-size:80%;">
+	  <a href="list-archives/gmp-bugs/">gmplib.org/list-archives/gmp-bugs/</a>
+	</td>
+	<td style="font-size:100%;">
+	  Bug reports (not questions!).  See <a href="manual/Reporting-Bugs.html">manual</a>.
+	</td>
+      </tr>
+      <tr>
+	<td> gmp-announce </td>
+	<td style="font-size:80%;">
+	  <a href="mailman/listinfo/gmp-announce">gmplib.org/mailman/listinfo/gmp-announce</a>
+	</td>
+	<td style="font-size:80%;">
+	    <a href="list-archives/gmp-announce/">gmplib.org/list-archives/gmp-announce/</a>
+	</td>
+	<td style="font-size:100%;">
+	    Announcements from the developers (very little traffic)
+	</td>
+      </tr>
+      <tr>
+	<td> gmp-discuss </td>
+	<td style="font-size:80%;">
+	    <a href="mailman/listinfo/gmp-discuss">gmplib.org/mailman/listinfo/gmp-discuss</a>
+	<td style="font-size:80%;">
+	    <a href="list-archives/gmp-discuss/">gmplib.org/list-archives/gmp-discuss/</a>
+	<td style="font-size:100%;">
+	    Questions, Help, Discussions
+      </tr>
+      <tr>
+	<td> gmp-devel</td>
+	<td style="font-size:80%;">
+	    <a href="mailman/listinfo/gmp-devel">gmplib.org/mailman/listinfo/gmp-devel</a>
+	</td>
+	<td style="font-size:80%;">
+	    <a href="list-archives/gmp-devel/">gmplib.org/list-archives/gmp-devel/</a>
+	</td>
+	<td style="font-size:100%;">
+	    Technical discussions between developers
+	</td>
+      </tr>
+      <tr>
+	<td> gmp-commit	</td>
+	<td style="font-size:80%;">
+	    <a href="mailman/listinfo/gmp-commit">gmplib.org/mailman/listinfo/gmp-commit</a>
+	</td>
+	<td style="font-size:80%;">
+	    <a href="list-archives/gmp-commit/">gmplib.org/list-archives/gmp-commit/</a>
+	</td>
+	<td style="font-size:100%;">
+	    Commit messages
+	</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p>Note that we perform spam and virus filtering of these lists.  The lists
+have been 100% spam-free during the last years.
+</p>
+
+<p style="font-size:80%;">You cannot subscribe an AOL address to any GMP mailing list,
+since AOL blocks our mail server until we register with them as a "bulk
+mailer", something we will certainly never do.
+</p>
+
+<p style="font-size:75%;">We're blocking all mail from PR China, since 99% of
+the spam arriving to the GMP moderators emanates from PR China.  If you are
+affected but have a legitimate reason to send mail to the GMP project, e.g., if
+you work at a university or corporation with an interest in GMP, please let us
+know; we will open access for you.
+</p>
+
+
+<hr>
+<a name="STATUS"> </a>
+<h3>Status of the current release</h3>
+
+<p>
+The current stable release is 6.1.2, released 2016-12-16. <br>
+</p>
+
+<h5>Issues with GMP 6.1.2:</h5>
+<ul>
+  <li> [No issues found yet.]
+  </li>
+</ul>
+
+<h5>Issues with GMP 6.1.1:</h5>
+<ul>
+  <li> There are several issues with mini-gmp.  Please see the special
+    <a href="devel/mini-gmp-status.html">mini-gmp-status</a> page.
+  </li>
+</ul>
+
+<h5>Issues with GMP 6.1.0:</h5>
+<ul>
+  <li> An assembly file which is used for Intel Broadwell and Intel Skylake
+    (except crippled Pentiums and Celerons without BMI2) will not work
+    correctly for Windoze.
+    <a href="/repo/gmp-6.1/raw-rev/67d4ee9dead1">Patch.</a>
+  </li>
+  <li> See also issues for subsequent releases above. </li>
+</ul>
+
+<h5>Issues with GMP 6.0.0:</h5>
+<ul>
+  <li> [No issues found yet.]
+  </li>
+  <li> See also issues for subsequent releases above. </li>
+</ul>
+
+<h5>Issues with GMP 5.1.3:</h5>
+<ul>
+  <li> The documentation of <code>mpn_set_str</code> is incorrect and
+    incomplete wrt allocation requirements.
+    <a href="/repo/gmp-5.1/raw-rev/d19172622a74">Patch.</a>
+  </li>
+  <li> See also issues for subsequent releases above. </li>
+</ul>
+
+<h5>Issues with GMP 5.1.2:</h5>
+<ul>
+  <li> The functions <code>mpn_sbpi1_div_qr_sec</code> and
+    <code>mpn_sbpi1_div_r_sec</code> compute incorrect results for some
+    operands.  With uniformly distributed random operands, the error is very
+    hard to trigger, and for the intended use of these functions, operands can
+    be expected to appear as such random operands from these functions'
+    perspective.  <a href="/repo/gmp-5.1/raw-rev/a447c0c53789">Patch.</a>
+  </li>
+  <li>
+    The internal function mpn_divrem_2 on Itanium clobbers two callee-saves
+    registers.  This can lead to miscomputations or crashes in the callers.
+    <a href="/repo/gmp-5.1/raw-rev/394bdf8fdaee">Patch.</a>
+  </li>
+  <li> See also issues for subsequent releases above. </li>
+</ul>
+
+<h5>Issues with GMP 5.1.1:</h5>
+<ul>
+  <li> Windows only: A 64-bit build for AMD Bulldozer and Piledriver chips, or
+    a fat 64-bit build running on these chips, will not work correctly.
+    <a href="/repo/gmp-5.1/raw-rev/11fbd825bc45">Patch.</a>
+  </li>
+  <li> The function <code>mpz_powm_ui</code> computes garbage if the base
+    argument is over 15000 decimal or the mod argument is at least 7500 decimal
+    digits.  No other GMP powm function is affected.
+    <a href="/repo/gmp-5.1/raw-rev/ec4d88674036">Patch.</a>
+  </li>
+  <li> See also issues for subsequent releases above. </li>
+</ul>
+
+<h5>Issues with GMP 5.1.0:</h5>
+<ul>
+<li> The mini-gmp.c file, which implements a subset of mpn and mpz, was not
+     properly tested and contained a number of bugs.  Please do not use the
+     5.1.0 version of mini-gmp.c.  Note that these bugs do not affect GMP
+     itself. </li>
+<li> The included top-level Makefile.in has an automake-generated
+     <code>distcheck</code> target which creates a world-writable directory.
+     This target is not used in the GMP release process, but it is a potential
+     security problem affecting users who invoke this make target.  This
+     problem (and no other) is corrected in the gmp-5.1.0a.tar.* set of
+     files. </li>
+  <li> See also issues for subsequent releases above. </li>
+</ul>
+
+<p>For patches to older GMP versions, please see the
+<a href="oldrel/">Info on older GMP releases</a>.
+</p>
+
+
+<hr>
+<a name="FUTURE"> </a>
+<h3>Future releases</h3>
+
+<p>
+Please see <a href="devel/GMPng.html"> the GMPng page </a> for information on
+what we're working on.
+</p>
+
+  <div id="footer-spacer"></div>
+
+</div>
+
+<div id="footer">
+<table style="width:100%; background-color:#808080;">
+  <tr>
+    <td style="text-align:center;">
+      <div style="font-size:80%">
+	Please send comments about this page to gmp-discuss<div style="display:inline;"> at </div>gmplib.org
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">
+      <div style="font-size:80%;">
+	Copyright 2000&#8211;2016 Free Software Foundation
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">
+      <div style="font-size:80%;">
+	Verbatim copying and distribution of this entire article is permitted
+	in any medium, provided this notice is preserved.
+      </div>
+    </td>
+  </tr>
+</table>
+</div>
+
+</body>
+</html>
