@@ -8,6 +8,7 @@ c=0
 for line in open('/Users/tommyjarosz/Desktop/posts.xml','r'):
 	c+=1
 	if c%1000000==0:
+		print 'Saving...'
 		np.save('links_dic_'+str(int(c/1000000)),links_dic)
 		links_dic={}
 	if c%5000==0:
