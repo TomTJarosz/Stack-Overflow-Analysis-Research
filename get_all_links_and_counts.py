@@ -18,7 +18,7 @@ for line in open('/Users/tommyjarosz/Desktop/posts.xml','r'):
 		for l in soup.find_all('a'):
 			link= l.get('href')
 			if link in links_dic:
-				gplinks_dic[link]=links_dic[link]+1
+				links_dic[link]=links_dic[link]+1
 			else:
 				links_dic[link]=1
 np.save('links_dic_'+str(1+int(c/1000000)),links_dic)
