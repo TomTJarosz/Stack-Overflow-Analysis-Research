@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 import nntextcleaner as tc
 from bs4 import BeautifulSoup as bs
 import numpy as np
-t_lines=32379999.
+t_lines=32389999.
 links_dic={}
 c=0
 for line in open('/Users/tommyjarosz/Desktop/posts.xml','r'):
@@ -18,7 +18,7 @@ for line in open('/Users/tommyjarosz/Desktop/posts.xml','r'):
 		for l in soup.find_all('a'):
 			link= l.get('href')
 			if link in links_dic:
-				links_dic[link]=links_dic[link]+1
+				gplinks_dic[link]=links_dic[link]+1
 			else:
 				links_dic[link]=1
 np.save('links_dic_'+str(1+int(c/1000000)),links_dic)
